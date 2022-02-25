@@ -10,10 +10,18 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var addProductQuantity : Add?
+    var updateProductQuantity : Delete?
+    var products : ProductList?
+    var purchasedProduct : PurchaseCollection?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        products = ProductList()
+        addProductQuantity = Add()
+        updateProductQuantity = Delete()
+        purchasedProduct = PurchaseCollection()
         return true
     }
 
