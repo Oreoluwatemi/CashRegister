@@ -103,8 +103,17 @@ class ViewController: UIViewController, UITableViewDelegate,
     
     
     @IBAction func buyProduct(_ sender: Any) {
+        if productQuantity.text == "Quantity" || productType.text == "Type"{
+            let alert = UIAlertController(title: "Error", message: "Select a quantity and Product", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: .none)
+            
+            alert.addAction(action)
+            
+            present(alert, animated: true, completion: nil)
+        }
         //if user buys the product the product quantity is updated
         if let quantity = Int(productQuantity.text!){
+            
             self.products = updateProductQuantity!.updateQuantity(name: productType.text!, quantity: quantity)
             
             let amount = Double(totalPrice.text!)
@@ -123,6 +132,9 @@ class ViewController: UIViewController, UITableViewDelegate,
         let firstDestination = segue.destination as! SelectViewController
         firstDestination.productListFromVC = purchasedProduct!.allPurchase
         firstDestination.pListFromVC = products!.allProducts
+        productType.text = "Type"
+        productQuantity.text = "Quantity"
+        totalPrice.text = "Total"
    
         productTable.reloadData()
     }
